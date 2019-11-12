@@ -16,16 +16,23 @@ public class Campsite {
     @Size(min=3, max=20)
     private String name;
 
+    @NotNull
+    @Size(min=3, max=20)
+    private String location;
+
     //Constructors
     public void Campsite() {}
-    public void Campsite(String name) {
+    public void Campsite(String name, String location) {
         this.name = name;
+        this.location = location;
     }
 
     //Getters
     public int getId() { return id; }
     public String getName() { return name; }
+    public String getLocation() { return location; }
 
     //Setters
     public void setName(String name) { this.name = name; }
+    public void setLocation(String location) { this.location = location; }
 }

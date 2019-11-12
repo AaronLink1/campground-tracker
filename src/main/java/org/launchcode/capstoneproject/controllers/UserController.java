@@ -36,7 +36,7 @@ public class UserController {
 
         userDao.save(newUser);
 
-        return "redirect:";
+        return "redirect: ";
     }
 
     @RequestMapping(value = "new-user", method = RequestMethod.GET)
