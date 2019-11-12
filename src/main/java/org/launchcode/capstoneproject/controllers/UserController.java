@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -30,7 +31,29 @@ public class UserController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Login");
-            return "cheese/add";
+            return "login/index";
+        }
+
+        userDao.save(newUser);
+
+        return "redirect:";
+    }
+
+    @RequestMapping(value = "new-user", method = RequestMethod.GET)
+    public String newUser(Model model) {
+        model.addAttribute("title", "New User");
+        model.addAttribute(new User());
+        return "login/new-user";
+    }
+
+    @RequestMapping(value = "new-user", method = RequestMethod.POST)
+    public String processNewUser(@ModelAttribute @Valid User newUser, @RequestParam String confirmPassword,
+                                 Errors errors, Model model) {
+        if (errors.hasErrors() || !newUser.getPassword().equals(confirmPassword)) {
+            model.addAttribute("errors", "Password and Confirm Password must match");
+            model.addAttribute("title", "New User");
+            model.addAttribute(new User());
+            return "login/new-user";
         }
 
         userDao.save(newUser);
