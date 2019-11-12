@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class User {
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private int id;
 
     @NotNull
