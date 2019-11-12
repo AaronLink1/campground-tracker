@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head">Title</head>
 <body>
     <h1 th:text="${title}">Title</h1>
-    <nav th:replace="fragments :: nav"></nav>
+
     <p th:unless="${campsites} and ${campsites.size()}">No Campsites YET!</p>
     <table class="table">
         <tr>
@@ -12,8 +12,12 @@
         </tr>
         <tr th:each="campsite : ${campsites}">
             <td th:text="${campsite.name}"></td>
-            <td th:text="${campsite.location"></td>
+            <td th:text="${campsite.location}"></td>
         </tr>
     </table>
+
+    <nav>
+        <a href="campsites/add-campsite">Add Campsite</a>
+    </nav>
 </body>
 </html>

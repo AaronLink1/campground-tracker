@@ -41,6 +41,6 @@ public class CampsiteController {
 
         campsiteDao.save(newCampsite);
 
-        return "redirect: ";
+        return "redirect:";
     }
 }
