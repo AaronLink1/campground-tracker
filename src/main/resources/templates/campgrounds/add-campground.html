@@ -20,7 +20,12 @@
             <input class="form-control" th:field="*{price}" />
             <span th:errors="*{price}" class="error"></span>
         </div>
-        <input type="submit" value="Add Campsite"/>
+        <div class="form-group">
+            <label>Electric:</label>
+            <label th:for="hasElectric">Has Electric</label>
+            <input type="radio" class="form-control" th:field="*{hasElectric}"/>
+        </div>
+        <input type="submit" value="Add Campground"/>
     </form>
 </body>
 </html>
