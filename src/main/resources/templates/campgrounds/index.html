@@ -10,11 +10,19 @@
             <th>Campground</th>
             <th>Location</th>
             <th>Price</th>
+            <th>Electric</th>
+            <th>Water</th>
+            <th>Dump</th>
+            <th>Facilities</th>
         </tr>
         <tr th:each="campground : ${campgrounds}">
             <td th:text="${campground.name}"></td>
             <td th:text="${campground.location}"></td>
             <td th:text="${campground.price}"></td>
+            <td th:text="${campground.hasElectric}"></td>
+            <td th:text="${campground.hasWater}"></td>
+            <td th:text="${campground.hasDump}"></td>
+            <td th:text="${campground.hasFacilities}"></td>
         </tr>
     </table>
 
