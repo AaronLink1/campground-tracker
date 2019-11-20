@@ -7,9 +7,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Campsite {
+public class Campground {
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private int id;
 
     @NotNull
@@ -20,19 +20,25 @@ public class Campsite {
     @Size(min=3, max=50)
     private String location;
 
+    @NotNull
+    private int price;
+
     //Constructors
-    public void Campsite() {}
-    public void Campsite(String name, String location) {
+    public void Campground() {}
+    public void Campground(String name, String location, int price) {
         this.name = name;
         this.location = location;
+        this.price = price;
     }
 
     //Getters
     public int getId() { return id; }
     public String getName() { return name; }
     public String getLocation() { return location; }
+    public int getPrice() { return price; }
 
     //Setters
     public void setName(String name) { this.name = name; }
     public void setLocation(String location) { this.location = location; }
+    public void setPrice(int price) { this.price = price; }
 }

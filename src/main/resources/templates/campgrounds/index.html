@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">Title</head>
+<body>
+    <h1 th:text="${title}">Title</h1>
+
+    <p th:unless="${campgrounds} and ${campgrounds.size()}">No Campgrounds YET!</p>
+    <table class="table">
+        <tr>
+            <th>Campground</th>
+            <th>Location</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each="campground : ${campgrounds}">
+            <td th:text="${campground.name}"></td>
+            <td th:text="${campground.location}"></td>
+            <td th:text="${campground.price}"></td>
+        </tr>
+    </table>
+
+    <nav>
+        <a href="campgrounds/add-campground">Add Campground</a>
+    </nav>
+</body>
+</html>
