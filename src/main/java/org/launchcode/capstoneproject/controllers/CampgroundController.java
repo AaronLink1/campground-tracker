@@ -34,6 +34,7 @@ public class CampgroundController {
 
     @RequestMapping(value = "add-campground", method = RequestMethod.POST)
     public String processAddCampsite(@ModelAttribute @Valid Campground newCampground, Errors errors, Model model) {
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Campground");
             return "campgrounds/add-campground";

@@ -1,15 +1,18 @@
 package org.launchcode.capstoneproject.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.Data;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Data
 @Entity
+@Table(name = "campground")
 public class Campground {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "campground_id")
     private int id;
 
     @NotNull
