@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.activation.DataSource;
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -25,16 +25,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Value("${spring.queries.users-query}")
     private String usersQuery;
 
-    @Value("${spring.queries.roles-query}")
-    private String rolesQuery;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.
                 jdbcAuthentication()
                 .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
@@ -47,10 +43,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+                .antMatchers("/campground").hasAuthority("").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home")
+                .defaultSuccessUrl("/campground")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout()
@@ -59,10 +55,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/access-denied");
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-    }
+    //@Override
+    //public void configure(WebSecurity web) throws Exception {
+    //    web
+    //            .ignoring()
+    //            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+    //}
 }

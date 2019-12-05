@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-@Repository("campgroundRepository")
+@Repository
 @Transactional
 public interface CampgroundDao extends JpaRepository<Campground, Integer> {
-    Campground findByCampground(String campground);
+    //Campground findByCampground(String campground);
 }
