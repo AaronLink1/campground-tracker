@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
-@Service("userService")
+@Service
 public class UserService {
+
     private UserDao userDao;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -24,8 +22,8 @@ public class UserService {
         return userDao.findByEmail(email);
     }
 
-    public User saveUser(User user) {
+    public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        return userDao.save(user);
+        userDao.save(user);
     }
 }

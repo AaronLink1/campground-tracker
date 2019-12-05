@@ -2,8 +2,8 @@ package org.launchcode.capstoneproject.controllers;
 
 import org.launchcode.capstoneproject.models.User;
 import org.launchcode.capstoneproject.models.data.UserDao;
-import org.launchcode.capstoneproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,7 +19,10 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserDao userDao;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String index(Model model) {
@@ -29,14 +32,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String processLoginForm(@ModelAttribute @Valid User newUser, Errors errors, Model model) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Login");
-            return "login/index";
-        }
-
-        userService.saveUser(newUser);
+    public String processLoginForm(Model model) {
 
         return "redirect:";
     }
@@ -52,22 +48,25 @@ public class UserController {
     public String processNewUser(@ModelAttribute @Valid User newUser, @RequestParam String confirmPassword,
                                  Errors errors, Model model) {
         if (errors.hasErrors() || !newUser.getPassword().equals(confirmPassword)) {
-            model.addAttribute("errors", "Password and Confirm Password must match");
             model.addAttribute("title", "New User");
+            if(!newUser.getPassword().equals(confirmPassword)) {
+                model.addAttribute("passwordError", "Password does not match");
+            }
             model.addAttribute(new User());
             return "login/registration";
         }
 
-        User userExists = userService.findUserByEmail(newUser.getEmail());
+        User userExists = userDao.findByEmail(newUser.getEmail());
         if(userExists != null) {
             model.addAttribute("title", "Registration");
-            model.addAttribute("error", "Email already in use!");
+            model.addAttribute("emailError", "Email already in use");
             model.addAttribute(new User());
             return "login/registration";
         }
 
-        userService.saveUser(newUser);
+        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+        userDao.save(newUser);
 
-        return "redirect:";
+        return "redirect:login";
     }
 }

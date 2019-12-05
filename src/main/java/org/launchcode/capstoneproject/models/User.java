@@ -10,23 +10,22 @@ import javax.validation.constraints.NotEmpty;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
     private int id;
-    @Column(name = "email")
-    @Email(message = "*Please provide a valid Email")
-    @NotEmpty(message = "*Please provide an email")
+
+    @Email
+    @NotEmpty
     private String email;
-    @Column(name = "password")
-    @Length(min = 5, message = "*Your password must have at least 5 characters")
-    @NotEmpty(message = "*Please provide your password")
+
+    @Length(min = 5)
+    @NotEmpty
     private String password;
-    @Column(name = "name")
-    @NotEmpty(message = "*Please provide your name")
+
+    @NotEmpty
     private String name;
-    @Column(name = "last_name")
-    @NotEmpty(message = "*Please provide your last name")
+
+    @NotEmpty
     private String lastName;
-    @Column(name = "active")
+
     private int active;
 
     //Constructors
