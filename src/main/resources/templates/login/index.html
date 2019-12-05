@@ -6,9 +6,19 @@
 
     <form method="post" style="max-width:600px;" th:object="${user}">
         <div class="form-group">
-            <label th:for="userName">Username</label>
-            <input class="form-control" th:field="*{userName}" />
-            <span th:errors="*{userName}" class="error"></span>
+            <label th:for="name">First Name</label>
+            <input class="form-control" th:field="*{name}" />
+            <span th:errors="*{name}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label th:for="lastName">Last Name</label>
+            <input class="form-control" th:field="*{lastName}" />
+            <span th:errors="*{lastName}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label th:for="email">Email</label>
+            <input class="form-control" th:field="*{email}" />
+            <span th:errors="*{email}" class="error"></span>
         </div>
         <div class="form-group">
             <label th:for="password">Password</label>
@@ -19,7 +29,7 @@
     </form>
 
     <h2>
-        <a href="login/new-user">New User</a>
+        <a href="login/registration">New User</a>
     </h2>
 </body>
 </html>
