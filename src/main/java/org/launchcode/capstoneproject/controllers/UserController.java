@@ -3,6 +3,8 @@ package org.launchcode.capstoneproject.controllers;
 import org.launchcode.capstoneproject.models.User;
 import org.launchcode.capstoneproject.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +23,7 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String index(Model model) {
@@ -31,9 +32,10 @@ public class UserController {
         return "login/index";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String processLoginForm(Model model) {
-
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String processLoginForm(@RequestParam String email, @RequestParam String password, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userDao.findByUsername(auth.getName());
         return "redirect:";
     }
 
@@ -56,7 +58,7 @@ public class UserController {
             return "login/registration";
         }
 
-        User userExists = userDao.findByEmail(newUser.getEmail());
+        User userExists = userDao.findByUsername(newUser.getUsername());
         if(userExists != null) {
             model.addAttribute("title", "Registration");
             model.addAttribute("emailError", "Email already in use");
@@ -67,6 +69,6 @@ public class UserController {
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
         userDao.save(newUser);
 
-        return "redirect:login";
+        return "redirect:campground";
     }
 }

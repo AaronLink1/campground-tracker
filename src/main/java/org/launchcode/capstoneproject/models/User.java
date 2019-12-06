@@ -9,47 +9,30 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int id;
-
-    @Email
-    @NotEmpty
-    private String email;
 
     @Length(min = 5)
     @NotEmpty
     private String password;
 
     @NotEmpty
-    private String name;
-
-    @NotEmpty
-    private String lastName;
-
-    private int active;
+    private String username;
 
     //Constructors
     public User() {}
-    public User(String email, String password, String name, String lastName, int active) {
-        this.email = email;
-        this.name = name;
-        this.lastName = lastName;
+    public User(String password, String username) {
+        this.username = username;
         this.password = password;
-        this.active = active;
     }
 
     //Getters
-    public String getEmail() { return email; }
-    public String getName() { return name; }
-    public String getLastName() { return lastName; }
+    public String getUsername() { return username; }
     public String getPassword() { return password; }
     public int getId() { return id; }
 
     //Setters
-    public void setEmail(String email) { this.email = email; }
-    public void setName(String name) { this.name = name; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) { this.password = password; }
-    public void setActive(int active) { this.active = active; }
 
 }
