@@ -4,22 +4,20 @@
 <body class="container">
     <h1 th:text="${title}">Default Title</h1>
 
-    <form action="Login" method="post" style="max-width:600px;" th:object="${user}">
+    <form action="Login" method="post" style="max-width:600px;">
         <div class="form-group">
-            <label th:for="username">Username</label>
-            <input class="form-control" th:field="*{username}" />
-            <span th:errors="*{username}" class="error"></span>
+            <label for="username">Username</label>
+            <input type="text" id="username" value="" />
         </div>
         <div class="form-group">
-            <label th:for="password">Password</label>
-            <input class="form-control" th:field="*{password}" />
-            <span th:errors="*{password}" class="error"></span>
+            <label for="password">Password</label>
+            <input type="password" id="password" value="" />
         </div>
         <input type="submit" value="Login"/>
     </form>
 
     <h2>
-        <a href="login/registration">New User</a>
+        <a href="/registration">New User</a>
     </h2>
 </body>
 </html>

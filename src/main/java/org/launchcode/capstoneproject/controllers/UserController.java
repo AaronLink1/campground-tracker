@@ -23,20 +23,13 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("title", "Login");
-        model.addAttribute(new User());
         return "login/index";
-    }
-
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLoginForm(@RequestParam String email, @RequestParam String password, Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userDao.findByUsername(auth.getName());
-        return "redirect:";
     }
 
     @RequestMapping(value = "registration", method = RequestMethod.GET)
@@ -48,12 +41,9 @@ public class UserController {
 
     @RequestMapping(value = "registration", method = RequestMethod.POST)
     public String processNewUser(@ModelAttribute @Valid User newUser, @RequestParam String confirmPassword,
-                                 Errors errors, Model model) {
-        if (errors.hasErrors() || !newUser.getPassword().equals(confirmPassword)) {
+                                  Errors errors, Model model) {
+        if (errors.hasErrors()) {
             model.addAttribute("title", "New User");
-            if(!newUser.getPassword().equals(confirmPassword)) {
-                model.addAttribute("passwordError", "Password does not match");
-            }
             model.addAttribute(new User());
             return "login/registration";
         }
@@ -61,7 +51,6 @@ public class UserController {
         User userExists = userDao.findByUsername(newUser.getUsername());
         if(userExists != null) {
             model.addAttribute("title", "Registration");
-            model.addAttribute("emailError", "Email already in use");
             model.addAttribute(new User());
             return "login/registration";
         }
