@@ -4,18 +4,22 @@
 <body class="container">
     <h1 th:text="${title}">Default Title</h1>
 
-    <form th:action="Login" method="post" style="max-width:600px;" th:object="${user}">
-        <div class="form-group">
-            <label th:for="username">Username</label>
-            <input class="form-control" th:field="*{username}" />
-            <span th:errors="*{username}" class="error"></span>
-        </div>
-        <div class="form-group">
-            <label th:for="password">Password</label>
-            <input class="form-control" th:field="*{password}" />
-            <span th:errors="*{password}" class="error"></span>
-        </div>
-        <input type="submit" value="Login"/>
+    <form name="f" th:action="@{/login}" method="post" style="max-width:600px;">
+        <fieldset>
+            <div th:if="${param.error}" class="alert alert-danger">Invalid username and password</div>
+            <div th:if="${param.logout}" class="alert alert-success">You have been logged out</div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="username"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" name="password" placeholder="password"/>
+            </div>
+
+            <button type="submit" class="btn btn-success" >Login</button>
+        </fieldset>
     </form>
 
     <h2>

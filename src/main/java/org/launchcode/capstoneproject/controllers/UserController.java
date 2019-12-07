@@ -7,10 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -23,7 +20,7 @@ public class UserController {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @GetMapping(value = "login")
     public String index(Model model) {
         model.addAttribute("title", "Login");
         return "login/index";
@@ -53,7 +50,7 @@ public class UserController {
         }
 
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-        newUser.setRoles("USER");
+        newUser.setRoles("ROLE_USER");
         newUser.setActive(1);
         userDao.save(newUser);
 
