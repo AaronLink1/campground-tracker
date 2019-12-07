@@ -1,5 +1,6 @@
 package org.launchcode.capstoneproject.service;
 
+import org.launchcode.capstoneproject.models.User;
 import org.launchcode.capstoneproject.models.UserPrincipal;
 import org.launchcode.capstoneproject.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ public class UserPrincipalDetailService implements UserDetailsService {
     @Autowired
     private UserDao userDao;
 
+    private User user;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new UserPrincipal(userDao.findByUsername(username));
+        user = userDao.findByUsername(username);
+        return new UserPrincipal(user);
     }
 }
 

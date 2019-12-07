@@ -2,8 +2,6 @@ package org.launchcode.capstoneproject.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Set;
 
 @Entity
 public class User {
@@ -11,10 +9,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @NotNull
     private String username;
 
-    @Column(nullable = false)
+    @NotNull
     private String password;
 
     private int active;

@@ -3,8 +3,6 @@ package org.launchcode.capstoneproject.controllers;
 import org.launchcode.capstoneproject.models.User;
 import org.launchcode.capstoneproject.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,13 +21,11 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("title", "Login");
-        User user = new User("dan", "dan123");
         return "login/index";
     }
 
@@ -57,6 +53,8 @@ public class UserController {
         }
 
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+        newUser.setRoles("USER");
+        newUser.setActive(1);
         userDao.save(newUser);
 
         return "redirect:campground";

@@ -4,7 +4,7 @@
 <body class="container">
     <h1 th:text="${title}">Default Title</h1>
 
-    <form th:action="@{/Login}" method="post" style="max-width:600px;" th:object="${user}">
+    <form th:action="Login" method="post" style="max-width:600px;" th:object="${user}">
         <div class="form-group">
             <label th:for="username">Username</label>
             <input class="form-control" th:field="*{username}" />
