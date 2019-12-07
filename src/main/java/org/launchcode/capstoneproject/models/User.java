@@ -1,38 +1,65 @@
 package org.launchcode.capstoneproject.models;
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class User {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    @Length(min = 5)
-    @NotEmpty
-    private String password;
-
-    @NotEmpty
+    @Column(nullable = false)
     private String username;
 
-    //Constructors
+    @Column(nullable = false)
+    private String password;
+
+    private int active;
+
+    private String roles;
+
     public User() {}
-    public User(String password, String username) {
+
+    public User(String username, String password) {
         this.username = username;
+        this.password = password;
+        this.roles = "USER";
+        this.active = 1;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    //Getters
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
-    public int getId() { return id; }
+    public int getActive() {
+        return active;
+    }
 
-    //Setters
-    public void setUsername(String username) { this.username = username; }
-    public void setPassword(String password) { this.password = password; }
+    public void setActive(int active) {
+        this.active = active;
+    }
 
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 }
