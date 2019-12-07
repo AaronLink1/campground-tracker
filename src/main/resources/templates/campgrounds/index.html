@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">Title</head>
-<body>
+<body class="container">
     <h1 th:text="${title}">Title</h1>
 
     <form th:action="@{/logout}" method="post">
@@ -33,5 +33,9 @@
     <nav>
         <a href="campgrounds/add-campground">Add Campground</a>
     </nav>
+
+    <form method="post" style="max-width:600px;">
+        <button type="submit">Search</button>
+    </form>
 </body>
 </html>

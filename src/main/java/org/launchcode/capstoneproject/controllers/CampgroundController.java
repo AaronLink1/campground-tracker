@@ -10,10 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -38,6 +35,12 @@ public class CampgroundController {
 
         model.addAttribute("title", "Campgrounds");
         model.addAttribute("campgrounds", campgrounds);
+        return "campgrounds/index";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String processIndex(Model model) {
+
         return "campgrounds/index";
     }
 
