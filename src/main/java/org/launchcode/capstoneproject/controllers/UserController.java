@@ -54,6 +54,6 @@ public class UserController {
         newUser.setActive(1);
         userDao.save(newUser);
 
-        return "redirect:campground";
+        return "redirect:login";
     }
 }
