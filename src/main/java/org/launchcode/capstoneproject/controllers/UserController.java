@@ -29,6 +29,7 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("title", "Login");
+        User user = new User("dan", "dan123");
         return "login/index";
     }
 
