@@ -34,6 +34,10 @@ public class Campground {
     @NotNull
     private Boolean hasFacilities;
 
+    @ManyToOne
+    private User user;
+
+
     //Constructors
     public void Campground() {}
     public void Campground(String name, String location, int price, Boolean hasElectric, Boolean hasWater,

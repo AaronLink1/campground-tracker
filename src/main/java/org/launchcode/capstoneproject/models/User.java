@@ -2,6 +2,8 @@ package org.launchcode.capstoneproject.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -14,6 +16,10 @@ public class User {
 
     @NotNull
     private String password;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Campground> campgrounds = new ArrayList<>();
 
     private int active;
 
