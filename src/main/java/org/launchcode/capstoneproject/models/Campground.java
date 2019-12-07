@@ -60,6 +60,7 @@ public class Campground {
     public Boolean getHasWater() { return hasWater; }
     public Boolean getHasDump() { return hasDump; }
     public Boolean getHasFacilities() { return hasFacilities; }
+    public User getUser() { return user; }
 
     //Setters
     public void setName(String name) { this.name = name; }
@@ -69,4 +70,5 @@ public class Campground {
     public void setHasWater(Boolean hasWater) { this.hasWater = hasWater; }
     public void setHasDump(Boolean hasDump) { this.hasDump = hasDump; }
     public void setHasFacilities(Boolean hasFacilities) { this.hasFacilities = hasFacilities; }
+    public void setUserId(User user) { this.user = user; }
 }

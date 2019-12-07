@@ -34,17 +34,16 @@ public class CampgroundController {
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User user = userDao.findByUsername(userDetails.getUsername());
-        ArrayList<Campground> campgrounds = campgroundDao.findAllByUserId(user.getId());
+        ArrayList<Campground> campgrounds = campgroundDao.findAllByUser_Id(user.getId());
 
         model.addAttribute("title", "Campgrounds");
         model.addAttribute("campgrounds", campgrounds);
         return "campgrounds/index";
     }
 
-    @RequestMapping(value = "add-campground/{username}", method = RequestMethod.GET)
-    public String addCampsite(Model model, @PathVariable String username) {
+    @RequestMapping(value = "add-campground", method = RequestMethod.GET)
+    public String addCampsite(Model model) {
         model.addAttribute("title", "Add Campground");
-        model.addAttribute("user", userDao.findByUsername(username));
         model.addAttribute(new Campground());
         return "campgrounds/add-campground";
     }
@@ -56,6 +55,12 @@ public class CampgroundController {
             model.addAttribute("title", "Add Campground");
             return "campgrounds/add-campground";
         }
+
+        //Get the current users details
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        //Find user and set User in campground
+        newCampground.setUserId(userDao.findByUsername(userDetails.getUsername()));
 
         campgroundDao.save(newCampground);
 
