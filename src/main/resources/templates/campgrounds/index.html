@@ -4,6 +4,10 @@
 <body>
     <h1 th:text="${title}">Title</h1>
 
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+
     <p th:unless="${campgrounds} and ${campgrounds.size()}">No Campgrounds YET!</p>
     <table class="table">
         <tr>
