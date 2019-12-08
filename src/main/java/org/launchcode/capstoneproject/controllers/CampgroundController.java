@@ -39,7 +39,14 @@ public class CampgroundController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String processIndex(Model model, @RequestParam String) {
+    public String processIndex(Model model, @RequestParam String searchOption, @RequestParam String searchTerm) {
+
+        if (searchOption.equals("campground")) {
+
+        } else if (searchOption.equals("name")) {
+            model.addAttribute("title", "Search Results: Campground Name");
+            model.addAttribute("campgrounds", campgroundDao.findAllByName(searchTerm));
+        } else if (searchOption.equals("price"))
 
         return "campgrounds/index";
     }
