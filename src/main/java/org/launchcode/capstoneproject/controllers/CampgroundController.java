@@ -39,7 +39,7 @@ public class CampgroundController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String processIndex(Model model) {
+    public String processIndex(Model model, @RequestParam String) {
 
         return "campgrounds/index";
     }
