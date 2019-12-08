@@ -41,12 +41,30 @@ public class CampgroundController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String processIndex(Model model, @RequestParam String searchOption, @RequestParam String searchTerm) {
 
+        //Get the current users details and find the user
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(userDetails.getUsername());
+
+        //Get the users campground list
+        ArrayList<Campground> campgrounds = campgroundDao.findAllByUser_Id(user.getId());
+
+        ArrayList<Campground> searchResults = new ArrayList();
+
         if (searchOption.equals("campground")) {
 
         } else if (searchOption.equals("name")) {
             model.addAttribute("title", "Search Results: Campground Name");
-            model.addAttribute("campgrounds", campgroundDao.findAllByName(searchTerm));
-        } else if (searchOption.equals("price"))
+            for (Campground campground: campgrounds) {
+                if (campground.getName().equals(searchTerm)) {
+                    searchResults.add(campground);
+                }
+            }
+        } else if (searchOption.equals("price")) {
+
+        }
+
+        //Add the campgrounds that matched the searchOption and searchTerm
+        model.addAttribute("campgrounds", searchResults);
 
         return "campgrounds/index";
     }
@@ -66,11 +84,12 @@ public class CampgroundController {
             return "campgrounds/add-campground";
         }
 
-        //Get the current users details
+        //Get the current users details and find the user
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(userDetails.getUsername());
 
-        //Find user and set User in campground
-        newCampground.setUserId(userDao.findByUsername(userDetails.getUsername()));
+        //Give the new campground an assigned user
+        newCampground.setUser(user);
 
         campgroundDao.save(newCampground);
 

@@ -70,5 +70,5 @@ public class Campground {
     public void setHasWater(Boolean hasWater) { this.hasWater = hasWater; }
     public void setHasDump(Boolean hasDump) { this.hasDump = hasDump; }
     public void setHasFacilities(Boolean hasFacilities) { this.hasFacilities = hasFacilities; }
-    public void setUserId(User user) { this.user = user; }
+    public void setUser(User user) { this.user = user; }
 }
