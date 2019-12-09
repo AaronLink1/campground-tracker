@@ -45,22 +45,22 @@ public class CampgroundController {
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(userDetails.getUsername());
 
-        //Get the users campground list
-        ArrayList<Campground> campgrounds = campgroundDao.findAllByUser_Id(user.getId());
-
         ArrayList<Campground> searchResults = new ArrayList();
 
-        if (searchOption.equals("campground")) {
-
-        } else if (searchOption.equals("name")) {
+        if (searchOption.equals("name")) {
             model.addAttribute("title", "Search Results: Campground Name");
-            for (Campground campground: campgrounds) {
-                if (campground.getName().equals(searchTerm)) {
+            for (Campground campground : campgroundDao.findAllByName(searchTerm)) {
+                if (campground.getUser().getId() == user.getId()) {
                     searchResults.add(campground);
                 }
             }
         } else if (searchOption.equals("price")) {
-
+            model.addAttribute("title", "Search Results: Campground Price");
+            for (Campground campground : campgroundDao.findAllByPrice(Integer.parseInt(searchTerm))) {
+                if (campground.getUser().getId() == user.getId()) {
+                    searchResults.add(campground);
+                }
+            }
         }
 
         //Add the campgrounds that matched the searchOption and searchTerm
