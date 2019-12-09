@@ -20,7 +20,7 @@
             <th>Facilities</th>
         </tr>
         <tr th:each="campground : ${campgrounds}">
-            <td><a th:href="@{/campgrounds/${campground.id}}" th:text="${campground.name}"></a></td>
+            <td><a th:href="@{'/campgrounds/' + ${campground.id}}" th:text="${campground.name}"></a></td>
             <td th:text="${campground.location}"></td>
             <td th:text="${campground.price}"></td>
             <td th:text="${campground.hasElectric}"></td>

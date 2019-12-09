@@ -130,7 +130,7 @@ public class CampgroundController {
         return "campgrounds/remove";
     }
 
-    @RequestMapping(value = "campgrounds/{campgroundId}")
+    @RequestMapping(value = "{campgroundId}", method = RequestMethod.GET)
     public String campgroundPage(@PathVariable int campgroundId, Model model) {
 
         Campground campground = campgroundDao.findById(campgroundId);
