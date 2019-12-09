@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">Title</head>
+<body class="container">
+<h1 th:text="${title}">Title</h1>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>
+
+<form method="post">
+    <p th:unless="${campgrounds} and ${campgrounds.size()}">No Campgrounds YET!</p>
+    <table class="table">
+        <tr>
+            <th>Campground</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Electric</th>
+            <th>Water</th>
+            <th>Dump</th>
+            <th>Facilities</th>
+            <th>Remove</th>
+        </tr>
+        <tr th:each="campground : ${campgrounds}">
+            <td th:text="${campground.name}"></td>
+            <td th:text="${campground.location}"></td>
+            <td th:text="${campground.price}"></td>
+            <td th:text="${campground.hasElectric}"></td>
+            <td th:text="${campground.hasWater}"></td>
+            <td th:text="${campground.hasDump}"></td>
+            <td th:text="${campground.hasFacilities}"></td>
+            <td>
+                <input type="checkbox" name="campgroundIds" th:value="${campground.id}" th:id="${campground.id}"/>
+                <label th:for="${campground.id}" th:text="${campground.name}"></label>
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Remove" />
+</form>
+
+
+<nav>
+    <a href="campgrounds/add-campground">Add Campground</a>
+</nav>
+
+<form method="post" style="max-width:600px;">
+    <select name="searchOption">
+        <option value="name">Campground Name</option>
+        <option value="price">Campground Price</option>
+        <option value="location">Campground Location</option>
+        <option value="electric">Has Electric</option>
+        <option value="water">Has Water</option>
+        <option value="dump">Has Dump</option>
+        <option value="facilities">Has Facilities</option>
+    </select>
+    <input type="text" name="searchTerm" placeholder="Campground Name"/>
+    <button type="submit">Search</button>
+</form>
+</body>
+</html>

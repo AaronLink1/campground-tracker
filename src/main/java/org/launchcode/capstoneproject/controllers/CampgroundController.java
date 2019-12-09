@@ -27,10 +27,11 @@ public class CampgroundController {
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        //Get the current users details
+        //Get the current users details and user
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         User user = userDao.findByUsername(userDetails.getUsername());
+
+        //Get list of all the active users campgrounds
         ArrayList<Campground> campgrounds = campgroundDao.findAllByUser_Id(user.getId());
 
         model.addAttribute("title", "Campgrounds");
@@ -118,6 +119,29 @@ public class CampgroundController {
 
         campgroundDao.save(newCampground);
 
+        return "redirect:";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String removeCampground(Model model) {
+
+        //Get the current users details and find the user
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(userDetails.getUsername());
+
+        //Get a list of the active users campgrounds
+        ArrayList<Campground> campgrounds = campgroundDao.findAllByUser_Id(user.getId());
+
+        model.addAttribute("title", "Remove Campground");
+        model.addAttribute("campgrounds", campgrounds);
+
+        return "campgrounds/remove";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemoveCampground(Model model, @RequestParam int[] campgroundIds) {
+        for (int campgroundId : campgroundIds)
+            campgroundDao.deleteById(campgroundId);
         return "redirect:";
     }
 }
