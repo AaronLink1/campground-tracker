@@ -46,47 +46,12 @@ public class CampgroundController {
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(userDetails.getUsername());
 
-        ArrayList<Campground> searchResults = new ArrayList();
-
-        if (searchOption.equals("name")) {
-            model.addAttribute("title", "Search Results: Campground Name");
-            for (Campground campground : campgroundDao.findAllByName(searchTerm))
-                if (campground.getUser().getId() == user.getId())
-                    searchResults.add(campground);
-        } else if (searchOption.equals("price")) {
-            model.addAttribute("title", "Search Results: Campground Price");
-            for (Campground campground : campgroundDao.findAllByPrice(Integer.parseInt(searchTerm)))
-                if (campground.getUser().getId() == user.getId())
-                    searchResults.add(campground);
-        } else if (searchOption.equals("location")) {
-            model.addAttribute("title", "Search Results: Campground Location");
-            for (Campground campground : campgroundDao.findAllByLocation(searchTerm))
-                if (campground.getUser().getId() == user.getId())
-                    searchResults.add(campground);
-        } else if (searchOption.equals("electric")) {
-            model.addAttribute("title", "Search Results: Campgrounds with Electric");
-            for (Campground campground : campgroundDao.findAllByHasElectric(true))
-                if (campground.getUser().getId() == user.getId())
-                    searchResults.add(campground);
-        } else if (searchOption.equals("water")) {
-            model.addAttribute("title", "Search Results: Campgrounds with Water");
-            for (Campground campground : campgroundDao.findAllByHasWater(true))
-                if (campground.getUser().getId() == user.getId())
-                    searchResults.add(campground);
-        } else if (searchOption.equals("dump")) {
-            model.addAttribute("title", "Search Results: Campgrounds with Dump");
-            for (Campground campground : campgroundDao.findAllByHasDump(true))
-                if (campground.getUser().getId() == user.getId())
-                    searchResults.add(campground);
-        } else if (searchOption.equals("facilities")) {
-            model.addAttribute("title", "Search Results: Campgrounds with Facilities");
-            for (Campground campground : campgroundDao.findAllByHasFacilities(true))
-                if (campground.getUser().getId() == user.getId())
-                    searchResults.add(campground);
-        }
+        ArrayList<Campground> searchResults = findCampgrounds(searchOption, searchTerm, user);
 
         if (searchResults.isEmpty()) {
             model.addAttribute("title", "No Results Found");
+        } else {
+            model.addAttribute("title", "Search Results: " + searchOption);
         }
 
         //Add the campgrounds that matched the searchOption and searchTerm
@@ -143,5 +108,40 @@ public class CampgroundController {
         for (int campgroundId : campgroundIds)
             campgroundDao.deleteById(campgroundId);
         return "redirect:";
+    }
+
+    private ArrayList<Campground> findCampgrounds(String searchOption, String searchTerm, User user) {
+        ArrayList<Campground> searchResults = new ArrayList();
+        if (searchOption.equals("name")) {
+            for (Campground campground : campgroundDao.findAllByName(searchTerm))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("price")) {
+            for (Campground campground : campgroundDao.findAllByPrice(Integer.parseInt(searchTerm)))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("location")) {
+            for (Campground campground : campgroundDao.findAllByLocation(searchTerm))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("electric")) {
+            for (Campground campground : campgroundDao.findAllByHasElectric(true))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("water")) {
+            for (Campground campground : campgroundDao.findAllByHasWater(true))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("dump")) {
+            for (Campground campground : campgroundDao.findAllByHasDump(true))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("facilities")) {
+            for (Campground campground : campgroundDao.findAllByHasFacilities(true))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        }
+
+        return searchResults;
     }
 }
