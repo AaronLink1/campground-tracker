@@ -24,7 +24,7 @@ public class CampgroundController {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "")
     public String index(Model model) {
 
         //Get the current users details and user
@@ -39,7 +39,7 @@ public class CampgroundController {
         return "campgrounds/index";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public String processIndex(Model model, @RequestParam String searchOption, @RequestParam String searchTerm) {
 
         //Get the current users details and find the user
@@ -60,14 +60,14 @@ public class CampgroundController {
         return "campgrounds/index";
     }
 
-    @RequestMapping(value = "add-campground/", method = RequestMethod.GET)
+    @RequestMapping(value = "add-campground", method = RequestMethod.GET)
     public String addCampsite(Model model) {
         model.addAttribute("title", "Add Campground");
         model.addAttribute(new Campground());
         return "campgrounds/add-campground";
     }
 
-    @RequestMapping(value = "add-campground/", method = RequestMethod.POST)
+    @RequestMapping(value = "add-campground", method = RequestMethod.POST)
     public String processAddCampsite(@ModelAttribute @Valid Campground newCampground, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
