@@ -73,12 +73,12 @@ public class CampgroundController {
                 if (campground.getUser().getId() == user.getId())
                     searchResults.add(campground);
         } else if (searchOption.equals("dump")) {
-            model.addAttribute("title", "Search Results: Campgrounds with Electric");
+            model.addAttribute("title", "Search Results: Campgrounds with Dump");
             for (Campground campground : campgroundDao.findAllByHasDump(true))
                 if (campground.getUser().getId() == user.getId())
                     searchResults.add(campground);
         } else if (searchOption.equals("facilities")) {
-            model.addAttribute("title", "Search Results: Campgrounds with Electric");
+            model.addAttribute("title", "Search Results: Campgrounds with Facilities");
             for (Campground campground : campgroundDao.findAllByHasFacilities(true))
                 if (campground.getUser().getId() == user.getId())
                     searchResults.add(campground);
