@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Repository
 @Transactional
 public interface CampgroundDao extends JpaRepository<Campground, Integer> {
-    //Campground findByCampground(String campground);
+    Campground findById(int campgroundId);
     ArrayList<Campground> findAllByUser_Id(long userId);
     ArrayList<Campground> findAllByName(String name);
     ArrayList<Campground> findAllByPrice(int price);
