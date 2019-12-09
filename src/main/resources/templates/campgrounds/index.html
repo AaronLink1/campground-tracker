@@ -18,6 +18,7 @@
             <th>Water</th>
             <th>Dump</th>
             <th>Facilities</th>
+            <th>Rank (1-5)</th>
         </tr>
         <tr th:each="campground : ${campgrounds}">
             <td><a th:href="@{'/campgrounds/' + ${campground.id}}" th:text="${campground.name}"></a></td>
@@ -27,6 +28,7 @@
             <td th:text="${campground.hasWater}"></td>
             <td th:text="${campground.hasDump}"></td>
             <td th:text="${campground.hasFacilities}"></td>
+            <td th:text="${campground.rank}"></td>
         </tr>
     </table>
 

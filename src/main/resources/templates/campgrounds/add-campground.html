@@ -40,6 +40,17 @@
             <label class="custom-control-label" th:for="hasFacilities">Facilities</label>
             <span th:errors="*{hasFacilities}" class="error"></span>
         </div>
+        <div class="form-group">
+            <label th:for="rank">Rank</label>
+            <select th:field="*{rank}">
+                <option value="5">*****</option>
+                <option value="4">****</option>
+                <option value="3">***</option>
+                <option value="2">**</option>
+                <option value="1">*</option>
+            </select>
+            <span th:errors="*{rank}" class="error"></span>
+        </div>
         <input type="submit" value="Add Campground"/>
     </form>
 </body>
