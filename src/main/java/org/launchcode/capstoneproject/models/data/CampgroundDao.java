@@ -17,4 +17,7 @@ public interface CampgroundDao extends JpaRepository<Campground, Integer> {
     ArrayList<Campground> findAllByPrice(int price);
     ArrayList<Campground> findAllByLocation(String location);
     ArrayList<Campground> findAllByHasElectric(Boolean electric);
+    ArrayList<Campground> findAllByHasWater(Boolean water);
+    ArrayList<Campground> findAllByHasDump(Boolean dump);
+    ArrayList<Campground> findAllByHasFacilities(Boolean facilities);
 }

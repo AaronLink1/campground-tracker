@@ -67,6 +67,25 @@ public class CampgroundController {
             for (Campground campground : campgroundDao.findAllByHasElectric(true))
                 if (campground.getUser().getId() == user.getId())
                     searchResults.add(campground);
+        } else if (searchOption.equals("water")) {
+            model.addAttribute("title", "Search Results: Campgrounds with Water");
+            for (Campground campground : campgroundDao.findAllByHasWater(true))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("dump")) {
+            model.addAttribute("title", "Search Results: Campgrounds with Electric");
+            for (Campground campground : campgroundDao.findAllByHasDump(true))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("facilities")) {
+            model.addAttribute("title", "Search Results: Campgrounds with Electric");
+            for (Campground campground : campgroundDao.findAllByHasFacilities(true))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        }
+
+        if (searchResults.isEmpty()) {
+            model.addAttribute("title", "No Results Found");
         }
 
         //Add the campgrounds that matched the searchOption and searchTerm
