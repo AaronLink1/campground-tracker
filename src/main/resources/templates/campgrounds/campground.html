@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">Default Title</head>
+<body class="container">
+    <label for="name">Campground Name</label>
+    <h3 id="name" th:text="${campground.name}"></h3>
+
+    <label for="location">Campground Location</label>
+    <h3 id="location" th:text="${campground.name}"></h3>
+
+    <label for="price">Price</label>
+    <h3 id="price" th:text="${campground.name}"></h3>
+</body>
+</html>
