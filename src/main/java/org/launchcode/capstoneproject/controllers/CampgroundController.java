@@ -49,18 +49,24 @@ public class CampgroundController {
 
         if (searchOption.equals("name")) {
             model.addAttribute("title", "Search Results: Campground Name");
-            for (Campground campground : campgroundDao.findAllByName(searchTerm)) {
-                if (campground.getUser().getId() == user.getId()) {
+            for (Campground campground : campgroundDao.findAllByName(searchTerm))
+                if (campground.getUser().getId() == user.getId())
                     searchResults.add(campground);
-                }
-            }
         } else if (searchOption.equals("price")) {
             model.addAttribute("title", "Search Results: Campground Price");
-            for (Campground campground : campgroundDao.findAllByPrice(Integer.parseInt(searchTerm))) {
-                if (campground.getUser().getId() == user.getId()) {
+            for (Campground campground : campgroundDao.findAllByPrice(Integer.parseInt(searchTerm)))
+                if (campground.getUser().getId() == user.getId())
                     searchResults.add(campground);
-                }
-            }
+        } else if (searchOption.equals("location")) {
+            model.addAttribute("title", "Search Results: Campground Location");
+            for (Campground campground : campgroundDao.findAllByLocation(searchTerm))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
+        } else if (searchOption.equals("electric")) {
+            model.addAttribute("title", "Search Results: Campgrounds with Electric");
+            for (Campground campground : campgroundDao.findAllByHasElectric(true))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
         }
 
         //Add the campgrounds that matched the searchOption and searchTerm
