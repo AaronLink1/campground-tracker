@@ -23,6 +23,9 @@ public class Campground {
     private int price;
 
     @NotNull
+    private int rank;
+
+    @NotNull
     private Boolean hasElectric;
 
     @NotNull
@@ -41,10 +44,11 @@ public class Campground {
     //Constructors
     public void Campground() {}
     public void Campground(String name, String location, int price, Boolean hasElectric, Boolean hasWater,
-                           Boolean hasDump, Boolean hasFacilities) {
+                           Boolean hasDump, Boolean hasFacilities, int rank) {
         this.name = name;
         this.location = location;
         this.price = price;
+        this.rank = rank;
         this.hasElectric = hasElectric;
         this.hasWater = hasWater;
         this.hasDump = hasDump;
@@ -61,6 +65,7 @@ public class Campground {
     public Boolean getHasDump() { return hasDump; }
     public Boolean getHasFacilities() { return hasFacilities; }
     public User getUser() { return user; }
+    public int getRank() { return rank; }
 
     //Setters
     public void setName(String name) { this.name = name; }
@@ -71,4 +76,5 @@ public class Campground {
     public void setHasDump(Boolean hasDump) { this.hasDump = hasDump; }
     public void setHasFacilities(Boolean hasFacilities) { this.hasFacilities = hasFacilities; }
     public void setUser(User user) { this.user = user; }
+    public void setRank(int rank) { this.rank = rank; }
 }
