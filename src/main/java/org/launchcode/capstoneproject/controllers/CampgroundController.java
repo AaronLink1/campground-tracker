@@ -105,9 +105,29 @@ public class CampgroundController {
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemoveCampground(Model model, @RequestParam int[] campgroundIds) {
-        for (int campgroundId : campgroundIds)
-            campgroundDao.deleteById(campgroundId);
+            for (int campgroundId : campgroundIds)
+                campgroundDao.deleteById(campgroundId);
+
         return "redirect:";
+    }
+
+    @RequestMapping(value = "remove/search", method = RequestMethod.POST)
+    public String processRemoveCampgroundSearchResults(Model model, @RequestParam String searchOption,
+                                                       @RequestParam String searchTerm) {
+
+            //Get the current users details and find the user
+            UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDao.findByUsername(userDetails.getUsername());
+
+            ArrayList<Campground> searchResults = findCampgrounds(searchOption, searchTerm, user);
+            model.addAttribute("campgrounds", searchResults);
+
+            if (searchResults.isEmpty())
+                model.addAttribute("title", "No Results Found");
+            else
+                model.addAttribute("title", "Search Results: " + searchOption);
+
+        return "campgrounds/remove";
     }
 
     private ArrayList<Campground> findCampgrounds(String searchOption, String searchTerm, User user) {

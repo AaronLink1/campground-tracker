@@ -8,7 +8,7 @@
     <button type="submit" class="btn btn-danger">Logout</button>
 </form>
 
-<form method="post">
+<form method="post" action="remove">
     <p th:unless="${campgrounds} and ${campgrounds.size()}">No Campgrounds YET!</p>
     <table class="table">
         <tr>
@@ -44,7 +44,7 @@
     <a href="campgrounds/add-campground">Add Campground</a>
 </nav>
 
-<form method="post" style="max-width:600px;">
+<form method="post" action="remove/search" style="max-width:600px;">
     <select name="searchOption">
         <option value="name">Campground Name</option>
         <option value="price">Campground Price</option>
