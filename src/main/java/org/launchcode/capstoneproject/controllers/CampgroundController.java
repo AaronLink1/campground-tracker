@@ -171,6 +171,10 @@ public class CampgroundController {
             for (Campground campground : campgroundDao.findAllByHasFacilities(true))
                 if (campground.getUser().getId() == user.getId())
                     searchResults.add(campground);
+        } else if (searchOption.equals("rank")) {
+            for (Campground campground : campgroundDao.findAllByRank(Integer.parseInt(searchTerm)))
+                if (campground.getUser().getId() == user.getId())
+                    searchResults.add(campground);
         }
 
         return searchResults;
