@@ -1,17 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <title th:text="${title}"></title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
-    <nav>
-        <a href="campgrounds">Campgrounds</a>
-        <a href="search">Search</a>
-    </nav>
+<nav th:fragment="menu">
+    <form th:action="@{/logout}" method="post">
+        <ul>
+            <li><p>Campground Tracker</p></li>
+            <li><a th:href="@{/campgrounds}">Your Campgrounds</a></li>
+            <li><a th:href="@{/campgrounds/add-campground}">Add Campground</a></li>
+            <li><a th:href="@{/campgrounds/remove}">Remove Campground</a></li>
+            <button type="submit" class="logout-button">Logout</button>
+        </ul>
+    </form>
+</nav>
 </body>
 </html>

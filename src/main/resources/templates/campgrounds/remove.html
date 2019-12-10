@@ -19,6 +19,7 @@
             <th>Water</th>
             <th>Dump</th>
             <th>Facilities</th>
+            <th>Rank</th>
             <th>Remove</th>
         </tr>
         <tr th:each="campground : ${campgrounds}">
@@ -29,6 +30,7 @@
             <td th:text="${campground.hasWater}"></td>
             <td th:text="${campground.hasDump}"></td>
             <td th:text="${campground.hasFacilities}"></td>
+            <td th:text="${campground.rank}"></td>
             <td>
                 <input type="checkbox" name="campgroundIds" th:value="${campground.id}" th:id="${campground.id}"/>
                 <label th:for="${campground.id}" th:text="${campground.name}"></label>
@@ -53,6 +55,7 @@
         <option value="water">Has Water</option>
         <option value="dump">Has Dump</option>
         <option value="facilities">Has Facilities</option>
+        <option value="rank">Rank</option>
     </select>
     <input type="text" name="searchTerm" placeholder="Campground Name"/>
     <button type="submit">Search</button>

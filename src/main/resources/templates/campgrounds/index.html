@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">Title</head>
-<body class="container">
-    <h1 th:text="${title}">Title</h1>
+<body>
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-danger">Logout</button>
-    </form>
+    <nav th:replace="fragments :: menu">Menu</nav>
 
-    <p th:unless="${campgrounds} and ${campgrounds.size()}">No Campgrounds YET!</p>
-    <table class="table">
-        <tr>
-            <th>Campground</th>
-            <th>Location</th>
-            <th>Price</th>
-            <th>Electric</th>
-            <th>Water</th>
-            <th>Dump</th>
-            <th>Facilities</th>
-            <th>Rank (1-5)</th>
-        </tr>
-        <tr th:each="campground : ${campgrounds}">
-            <td><a th:href="@{'/campgrounds/' + ${campground.id}}" th:text="${campground.name}"></a></td>
-            <td th:text="${campground.location}"></td>
-            <td th:text="${campground.price}"></td>
-            <td th:text="${campground.hasElectric}"></td>
-            <td th:text="${campground.hasWater}"></td>
-            <td th:text="${campground.hasDump}"></td>
-            <td th:text="${campground.hasFacilities}"></td>
-            <td th:text="${campground.rank}"></td>
-        </tr>
-    </table>
+    <div class="wrapper">
+        <h1 th:text="${title}">Title</h1>
 
-    <nav>
-        <a th:href="@{/campgrounds/add-campground}">Add Campground</a> |
-        <a th:href="@{/campgrounds/remove}">Remove Campground</a>
-    </nav>
 
-    <form method="post" style="max-width:600px;">
-        <select name="searchOption">
-            <option value="name">Campground Name</option>
-            <option value="price">Campground Price</option>
-            <option value="location">Campground Location</option>
-            <option value="electric">Has Electric</option>
-            <option value="water">Has Water</option>
-            <option value="dump">Has Dump</option>
-            <option value="facilities">Has Facilities</option>
-            <option value="rank">Rank</option>
-        </select>
-        <input type="text" name="searchTerm" placeholder="Campground Name"/>
-        <button type="submit">Search</button>
-    </form>
+
+        <table class="table">
+            <tr>
+                <th>Campground</th>
+                <th>Location</th>
+                <th>Price</th>
+                <th>Electric</th>
+                <th>Water</th>
+                <th>Dump</th>
+                <th>Facilities</th>
+                <th>Rank (1-5)</th>
+            </tr>
+            <tr th:each="campground : ${campgrounds}">
+                <td><a th:href="@{'/campgrounds/' + ${campground.id}}" th:text="${campground.name}"></a></td>
+                <td th:text="${campground.location}"></td>
+                <td th:text="${campground.price}"></td>
+                <td th:text="${campground.hasElectric}"></td>
+                <td th:text="${campground.hasWater}"></td>
+                <td th:text="${campground.hasDump}"></td>
+                <td th:text="${campground.hasFacilities}"></td>
+                <td th:text="${campground.rank}"></td>
+            </tr>
+        </table>
+
+        <nav>
+            <a th:href="@{/campgrounds/add-campground}">Add Campground</a> |
+            <a th:href="@{/campgrounds/remove}">Remove Campground</a>
+        </nav>
+
+        <form method="post" style="max-width:600px;">
+            <select name="searchOption">
+                <option value="name">Campground Name</option>
+                <option value="price">Campground Price</option>
+                <option value="location">Campground Location</option>
+                <option value="electric">Has Electric</option>
+                <option value="water">Has Water</option>
+                <option value="dump">Has Dump</option>
+                <option value="facilities">Has Facilities</option>
+                <option value="rank">Rank</option>
+            </select>
+            <input type="text" name="searchTerm" placeholder="Campground Name"/>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
 </body>
 </html>
