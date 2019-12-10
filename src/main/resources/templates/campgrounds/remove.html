@@ -22,13 +22,13 @@
                 <th class="th-center">Remove</th>
             </tr>
             <tr th:each="campground : ${campgrounds}">
-                <td><a th:href="@{'/campgrounds/' + ${campground.id}}" th:text="${campground.name}"></a></td>
+                <td th:text="${campground.name}"></td>
                 <td th:text="${campground.location}"></td>
                 <td class="td-center" th:text="${campground.price}"></td>
-                <td class="td-center" th:text="${campground.hasElectric}"></td>
-                <td class="td-center" th:text="${campground.hasWater}"></td>
-                <td class="td-center" th:text="${campground.hasDump}"></td>
-                <td class="td-center" th:text="${campground.hasFacilities}"></td>
+                <td class="td-center"><span th:if="${campground.hasElectric}">&#10003;</span></td>
+                <td class="td-center"><span th:if="${campground.hasWater}">&#10003;</span></td>
+                <td class="td-center"><span th:if="${campground.hasDump}">&#10003;</span></td>
+                <td class="td-center"><span th:if="${campground.hasFacilities}">&#10003;</span></td>
                 <td class="td-center">
                     <span th:each="i: ${#numbers.sequence(0, campground.rank - 1)}" class="fa fa-star checked"></span>
                 </td>
