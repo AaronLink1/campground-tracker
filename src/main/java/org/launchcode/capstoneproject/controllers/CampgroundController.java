@@ -144,17 +144,6 @@ public class CampgroundController {
         return "campgrounds/remove";
     }
 
-    @RequestMapping(value = "{campgroundId}", method = RequestMethod.GET)
-    public String campgroundPage(@PathVariable int campgroundId, Model model) {
-
-        Campground campground = campgroundDao.findById(campgroundId);
-
-        model.addAttribute("title", campground.getName());
-        model.addAttribute("campground", campground);
-
-        return "campgrounds/campground";
-    }
-
     private ArrayList<Campground> findCampgrounds(String searchOption, String searchTerm, User user) {
         ArrayList<Campground> searchResults = new ArrayList();
         if (searchOption.equals("name")) {
