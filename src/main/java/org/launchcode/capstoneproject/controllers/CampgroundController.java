@@ -24,6 +24,7 @@ public class CampgroundController {
     @Autowired
     private UserDao userDao;
 
+
     @RequestMapping(value = "")
     public String index(Model model) {
 
