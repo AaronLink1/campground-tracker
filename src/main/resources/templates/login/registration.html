@@ -13,18 +13,20 @@
                 <label th:for="username">Username</label>
                 <input class="login-input" th:field="*{username}" placeholder="Username"/>
                 <span th:errors="*{username}" class="error"></span>
+                <span th:if="${userExists}" th:text="${userExists}" class="error"></span>
             </div>
 
             <div class="login-text-box">
                 <label th:for="password">Password</label>
-                <input class="login-input" th:field="*{password}" placeholder="Password"/>
+                <input class="login-input" type="password" th:field="*{password}" placeholder="Password"/>
                 <span th:errors="*{password}" class="error"></span>
             </div>
 
             <div class="login-text-box">
                 <label for="confirmPassword">Confirm Password</label>
-                <input class="login-input" type="text" id="confirmPassword" name="confirmPassword"
+                <input class="login-input" type="password" id="confirmPassword" name="confirmPassword"
                        placeholder="Confirm Password"/>
+                <span th:if="${passwordError}" th:text="${passwordError}" class="error"></span>
             </div>
 
             <button class="login-button">Register</button>

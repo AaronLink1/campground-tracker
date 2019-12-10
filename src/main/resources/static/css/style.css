@@ -269,7 +269,7 @@ th, td {
     padding: 10px;
 }
 
-p {
+.homepage-text {
     font-family: arial;
     font-size: 25px;
     text-indent: 60px;

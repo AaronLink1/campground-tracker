@@ -36,14 +36,21 @@ public class UserController {
     public String processNewUser(@ModelAttribute @Valid User newUser, @RequestParam String confirmPassword,
                                   Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("title", "New User");
+            model.addAttribute("title", "Register New User");
             model.addAttribute(new User());
+            return "login/registration";
+        }
+
+        if (!newUser.getPassword().equals(confirmPassword)) {
+            model.addAttribute("title", "Register New User");
+            model.addAttribute("passwordError", "Passwords do not match");
             return "login/registration";
         }
 
         User userExists = userDao.findByUsername(newUser.getUsername());
         if(userExists != null) {
-            model.addAttribute("title", "Registration");
+            model.addAttribute("title", "Register New User");
+            model.addAttribute("userExists", "Username already in use");
             model.addAttribute(new User());
             return "login/registration";
         }
