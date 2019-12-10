@@ -15,6 +15,12 @@ body {
     background-color: #fff;
 }
 
+.login-wrapper {
+    margin: 0 auto;
+    width: 400px;
+    background-color: #fff;
+}
+
 nav {
     width: 100%;
     height: 50px;
@@ -221,6 +227,46 @@ th, td {
     font-family: arial;
     font-size: 30px;
     color: #238f18;
+}
+
+.login-text-box {
+    padding: 10px;
+}
+
+.login-text-box label {
+    font-family: arial;
+    font-size: 25px;
+    color: #238f18;
+}
+
+.login-input {
+        width: 95%;
+        height: 27px;
+        font-family: arial;
+        font-size: 20px;
+        background-color: #238f18;
+        color: #fff;
+        margin-top: 10px;
+        margin-left: 8px;
+}
+
+.login-button {
+        background-color: #238f18;
+        color: #fff;
+        font-family: arial;
+        font-size: 20px;
+        width: 100px;
+        height: 35px;
+        margin-left: 150px;
+        margin-top: 15px;
+        margin-bottom: 10px;
+}
+
+.login-check-box {
+    font-family: arial;
+    color: #238f18;
+    margin-left: 130px;
+    padding: 10px;
 }
 
 .error {
