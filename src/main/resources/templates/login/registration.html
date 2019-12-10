@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">Title</head>
-<body class="container">
-<h1 th:text="${title}">Default Title</h1>
+<body>
 
-<form method="post" style="max-width:600px;" th:object="${user}">
-    <div class="form-group">
-        <label th:for="username">Username</label>
-        <input class="form-control" th:field="*{username}" />
-        <span th:errors="*{username}" class="error"></span>
+    <nav th:replace="fragments :: menu">Menu</nav>
+
+    <div class="login-wrapper">
+        <h1 th:text="${title}">Default Title</h1>
+
+        <form method="post" style="max-width:600px;" th:object="${user}">
+            <div class="login-text-box">
+                <label th:for="username">Username</label>
+                <input class="login-input" th:field="*{username}" placeholder="Username"/>
+                <span th:errors="*{username}" class="error"></span>
+            </div>
+
+            <div class="login-text-box">
+                <label th:for="password">Password</label>
+                <input class="login-input" th:field="*{password}" placeholder="Password"/>
+                <span th:errors="*{password}" class="error"></span>
+            </div>
+
+            <div class="login-text-box">
+                <label for="confirmPassword">Confirm Password</label>
+                <input class="login-input" type="text" id="confirmPassword" name="confirmPassword"
+                       placeholder="Confirm Password"/>
+            </div>
+
+            <button class="login-button">Register</button>
+        </form>
     </div>
-    <div class="form-group">
-        <label th:for="password">Password</label>
-        <input class="form-control" th:field="*{password}" />
-        <span th:errors="*{password}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input class="form-control" type="text" id="confirmPassword" name="confirmPassword" />
-    </div>
-    <input type="submit" value="Create"/>
-</form>
+
 </body>
 </html>
