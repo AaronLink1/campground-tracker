@@ -277,6 +277,14 @@ th, td {
     color: #238f18;
 }
 
+.campground-text {
+        font-family: arial;
+        font-size: 25px;
+        padding: 20px;
+        color: #238f18;
+        text-align: center;
+}
+
 .error {
     font-family: arial;
     font-size: 20px;

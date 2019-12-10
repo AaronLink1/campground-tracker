@@ -33,6 +33,10 @@
             </tr>
         </table>
 
+        <p th:unless="${campgrounds} and ${campgrounds.size()}" class="campground-text">
+            You currently have no campgrounds in your list
+        </p>
+
         <div class="search-form">
             <h1>Search Campgrounds</h1>
             <form method="post">
