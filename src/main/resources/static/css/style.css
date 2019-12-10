@@ -152,3 +152,79 @@ th, td {
         margin-left: 425px;
         margin-top: 15px;
 }
+
+.add-campground-text-box {
+    padding: 10px;
+    width: 600px;
+}
+
+.add-campground-text-box label {
+    font-family: arial;
+    font-size: 30px;
+    color: #238f18;
+}
+
+.text-box {
+    width: 100%;
+    height: 27px;
+    font-family: arial;
+    font-size: 20px;
+    background-color: #238f18;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.check-boxes {
+    display: inline-block;
+    padding: 10px
+}
+
+.check-boxes label {
+        font-family: arial;
+        font-size: 25px;
+        color: #238f18;
+        padding: 10px;
+}
+
+.check-box {
+    margin-left: 30px;
+}
+
+.add-button {
+            background-color: #238f18;
+            color: #fff;
+            font-family: arial;
+            font-size: 25px;
+            width: 250px;
+            height: 50px;
+            margin-left: 375px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+}
+
+.rank-select {
+    padding: 10px 15px;
+}
+
+.rank-select select {
+    font-family: arial;
+    background-color: #238f18;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    font-size: 20px;
+    width: 150px;
+    margin-left: 20px;
+}
+
+.rank-select label {
+    font-family: arial;
+    font-size: 30px;
+    color: #238f18;
+}
+
+.error {
+    font-family: arial;
+    font-size: 20px;
+    color: #f00;
+}

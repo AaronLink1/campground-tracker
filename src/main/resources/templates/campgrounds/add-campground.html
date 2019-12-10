@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">Title</head>
-<body class="container">
-    <h1 th:text="${title}">Title</h1>
+<body>
 
-    <form method="post" style="max-width:600px;" th:object="${campground}">
-        <div class="form-group">
-            <label th:for="name">Campground Name</label>
-            <input class="form-control" th:field="*{name}" />
-            <span th:errors="*{name}" class="error"></span>
-        </div>
-        <div class="form-group">
-            <label th:for="location">Location</label>
-            <input class="form-control" th:field="*{location}" />
-            <span th:errors="*{location}" class="error"></span>
-        </div>
-        <div class="form-group">
-            <label th:for="price">Price</label>
-            <input class="form-control" th:field="*{price}" />
-            <span th:errors="*{price}" class="error"></span>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" th:field="*{hasElectric}" />
-            <label class="custom-control-label" th:for="hasElectric">Electric</label>
-            <span th:errors="*{hasElectric}" class="error"></span>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" th:field="*{hasWater}" />
-            <label class="custom-control-label" th:for="hasWater">Water</label>
-            <span th:errors="*{hasWater}" class="error"></span>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" th:field="*{hasDump}" />
-            <label class="custom-control-label" th:for="hasDump">Dump</label>
-            <span th:errors="*{hasDump}" class="error"></span>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" th:field="*{hasFacilities}" />
-            <label class="custom-control-label" th:for="hasFacilities">Facilities</label>
-            <span th:errors="*{hasFacilities}" class="error"></span>
-        </div>
-        <div class="form-group">
-            <label th:for="rank">Rank</label>
-            <select th:field="*{rank}">
-                <option value="5">*****</option>
-                <option value="4">****</option>
-                <option value="3">***</option>
-                <option value="2">**</option>
-                <option value="1">*</option>
-            </select>
-            <span th:errors="*{rank}" class="error"></span>
-        </div>
-        <input type="submit" value="Add Campground"/>
-    </form>
+    <nav th:replace="fragments :: menu">Menu</nav>
+
+    <div class="wrapper">
+        <h1 th:text="${title}">Title</h1>
+
+        <form method="post" th:object="${campground}">
+            <div class="add-campground-text-box">
+                <label th:for="name">Campground Name</label>
+                <input class="text-box" th:field="*{name}" placeholder="Campground Name"/>
+                <span th:errors="*{name}" class="error"></span>
+            </div>
+
+            <div class="add-campground-text-box">
+                <label th:for="location">Location</label>
+                <input class="text-box" th:field="*{location}" placeholder="Campground Location"/>
+                <span th:errors="*{location}" class="error"></span>
+            </div>
+
+            <div class="add-campground-text-box">
+                <label th:for="price">Price</label>
+                <input class="text-box" th:field="*{price}"/>
+                <span th:errors="*{price}" class="error"></span>
+            </div>
+
+            <div class="check-boxes">
+                    <input type="checkbox" class="check-box" th:field="*{hasElectric}" />
+                    <label th:for="hasElectric">Electric</label>
+                    <span th:errors="*{hasElectric}" class="error"></span>
+
+                    <input type="checkbox" class="check-box" th:field="*{hasWater}" />
+                    <label th:for="hasWater">Water</label>
+                    <span th:errors="*{hasWater}" class="error"></span>
+
+                    <input type="checkbox" class="check-box" th:field="*{hasDump}" />
+                    <label th:for="hasDump">Dump</label>
+                    <span th:errors="*{hasDump}" class="error"></span>
+
+                    <input type="checkbox" class="check-box" th:field="*{hasFacilities}" />
+                    <label th:for="hasFacilities">Facilities</label>
+                    <span th:errors="*{hasFacilities}" class="error"></span>
+            </div>
+
+            <div class="rank-select">
+                <label th:for="rank">Rank</label>
+                <select th:field="*{rank}">
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Star</option>
+                </select>
+                <span th:errors="*{rank}" class="error"></span>
+            </div>
+
+            <button type="submit" class="add-button">Add Campground</button>
+        </form>
+    </div>
+
 </body>
 </html>

@@ -34,7 +34,7 @@ public class CampgroundController {
         //Get list of all the active users campgrounds
         ArrayList<Campground> campgrounds = campgroundDao.findAllByUser_Id(user.getId());
 
-        model.addAttribute("title", "Campgrounds");
+        model.addAttribute("title", "Your Campgrounds");
         model.addAttribute("campgrounds", campgrounds);
         return "campgrounds/index";
     }
