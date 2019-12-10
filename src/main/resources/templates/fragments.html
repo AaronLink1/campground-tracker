@@ -16,10 +16,13 @@
     <form th:action="@{/logout}" method="post">
         <ul>
             <li><p>Campground Tracker</p></li>
-            <li><a th:href="@{/campgrounds}">Your Campgrounds</a></li>
-            <li><a th:href="@{/campgrounds/add-campground}">Add Campground</a></li>
-            <li><a th:href="@{/campgrounds/remove}">Remove Campground</a></li>
-            <button type="submit" class="logout-button">Logout</button>
+            <li><a th:href="@{/}">Home Page</a></li>
+            <li th:if="${#authentication.name} == 'anonymousUser'"><a th:href="@{/login}">Login</a></li>
+            <li th:if="${#authentication.name} == 'anonymousUser'"><a th:href="@{/registration}">Register Account</a></li>
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/campgrounds}">Your Campgrounds</a></li>
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/campgrounds/add-campground}">Add Campground</a></li>
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/campgrounds/remove}">Remove Campground</a></li>
+            <button sec:authorize="isAuthenticated()" type="submit" class="logout-button">Logout</button>
         </ul>
     </form>
 </nav>

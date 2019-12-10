@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/")
 public class UserController {
 
     @Autowired
@@ -54,6 +53,6 @@ public class UserController {
         newUser.setActive(1);
         userDao.save(newUser);
 
-        return "redirect:";
+        return "redirect:login";
     }
 }
