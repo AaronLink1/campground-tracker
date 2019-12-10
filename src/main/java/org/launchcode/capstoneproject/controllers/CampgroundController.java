@@ -47,6 +47,19 @@ public class CampgroundController {
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(userDetails.getUsername());
 
+        if (searchOption.equals("rank"))
+            try {
+                Integer.parseInt(searchTerm);
+            } catch (Exception e) {
+                //Get list of all the active users campgrounds
+                ArrayList<Campground> campgrounds = campgroundDao.findAllByUser_Id(user.getId());
+                model.addAttribute("title", "Your Campgrounds");
+                model.addAttribute("campgrounds", campgrounds);
+                model.addAttribute("parseIntError",
+                        "When searching by rank, Search Term must be an integer");
+                return "campgrounds/index";
+            }
+
         ArrayList<Campground> searchResults = findCampgrounds(searchOption, searchTerm, user);
 
         if (searchResults.isEmpty()) {

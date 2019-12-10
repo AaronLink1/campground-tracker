@@ -52,6 +52,7 @@
                 <button class="search-button" type="submit">Search</button>
             </form>
         </div>
+        <span th:if="${parseIntError}" th:text="${parseIntError}" class="error"></span>
     </div>
 
 </body>
