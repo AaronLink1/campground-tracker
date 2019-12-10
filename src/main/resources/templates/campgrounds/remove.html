@@ -1,64 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">Title</head>
-<body class="container">
-<h1 th:text="${title}">Title</h1>
+<body>
 
-<form th:action="@{/logout}" method="post">
-    <button type="submit" class="btn btn-danger">Logout</button>
-</form>
+<nav th:replace="fragments :: menu">Menu</nav>
 
-<form method="post" th:action="@{/campgrounds/remove}">
-    <p th:unless="${campgrounds} and ${campgrounds.size()}">No Campgrounds YET!</p>
-    <table class="table">
-        <tr>
-            <th>Campground</th>
-            <th>Location</th>
-            <th>Price</th>
-            <th>Electric</th>
-            <th>Water</th>
-            <th>Dump</th>
-            <th>Facilities</th>
-            <th>Rank</th>
-            <th>Remove</th>
-        </tr>
-        <tr th:each="campground : ${campgrounds}">
-            <td th:text="${campground.name}"></td>
-            <td th:text="${campground.location}"></td>
-            <td th:text="${campground.price}"></td>
-            <td th:text="${campground.hasElectric}"></td>
-            <td th:text="${campground.hasWater}"></td>
-            <td th:text="${campground.hasDump}"></td>
-            <td th:text="${campground.hasFacilities}"></td>
-            <td th:text="${campground.rank}"></td>
-            <td>
-                <input type="checkbox" name="campgroundIds" th:value="${campground.id}" th:id="${campground.id}"/>
-                <label th:for="${campground.id}" th:text="${campground.name}"></label>
-            </td>
-        </tr>
-    </table>
+<div class="wrapper">
+    <h1 th:text="${title}">Title</h1>
 
-    <input type="submit" value="Remove" />
-</form>
+    <form method="post" th:action="@{/campgrounds/remove}">
+        <table>
+            <tr>
+                <th>Campground</th>
+                <th>Location</th>
+                <th class="th-center">Price</th>
+                <th class="th-center">Electric</th>
+                <th class="th-center">Water</th>
+                <th class="th-center">Dump</th>
+                <th class="th-center">Facilities</th>
+                <th class="th-center">Rank</th>
+                <th class="th-center">Remove</th>
+            </tr>
+            <tr th:each="campground : ${campgrounds}">
+                <td><a th:href="@{'/campgrounds/' + ${campground.id}}" th:text="${campground.name}"></a></td>
+                <td th:text="${campground.location}"></td>
+                <td class="td-center" th:text="${campground.price}"></td>
+                <td class="td-center" th:text="${campground.hasElectric}"></td>
+                <td class="td-center" th:text="${campground.hasWater}"></td>
+                <td class="td-center" th:text="${campground.hasDump}"></td>
+                <td class="td-center" th:text="${campground.hasFacilities}"></td>
+                <td class="td-center">
+                    <span th:each="i: ${#numbers.sequence(0, campground.rank - 1)}" class="fa fa-star checked"></span>
+                </td>
+                <td class="td-center">
+                    <input type="checkbox" name="campgroundIds" th:value="${campground.id}" th:id="${campground.id}"/>
 
+                </td>
+            </tr>
+        </table>
+        <button class="remove-button" type="submit">Remove</button>
+    </form>
 
-<nav>
-    <a href="campgrounds/add-campground">Add Campground</a>
-</nav>
+    <div class="search-form">
+        <h1>Search Campgrounds</h1>
+        <form method="post" th:action="@{/campgrounds/remove/search}">
+            <div class="custom-select">
+                <select name="searchOption">
+                    <option value="name">Campground Name</option>
+                    <option value="location">Campground Location</option>
+                    <option value="price">Campground Price</option>
+                    <option value="rank">Campground Rank</option>
+                    <option value="electric">Has Electric</option>
+                    <option value="water">Has Water</option>
+                    <option value="dump">Has Dump</option>
+                    <option value="facilities">Has Facilities</option>
+                </select>
+            </div>
+            <input class="search-box" type="text" name="searchTerm" placeholder="Search Here" />
+            <button class="search-button" type="submit">Search</button>
+        </form>
+    </div>
+</div>
 
-<form method="post" th:action="@{/campgrounds/remove/search}" style="max-width:600px;">
-    <select name="searchOption">
-        <option value="name">Campground Name</option>
-        <option value="price">Campground Price</option>
-        <option value="location">Campground Location</option>
-        <option value="electric">Has Electric</option>
-        <option value="water">Has Water</option>
-        <option value="dump">Has Dump</option>
-        <option value="facilities">Has Facilities</option>
-        <option value="rank">Rank</option>
-    </select>
-    <input type="text" name="searchTerm" placeholder="Campground Name"/>
-    <button type="submit">Search</button>
-</form>
 </body>
 </html>

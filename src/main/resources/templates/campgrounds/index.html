@@ -8,50 +8,50 @@
     <div class="wrapper">
         <h1 th:text="${title}">Title</h1>
 
-
-
-        <table class="table">
+        <table>
             <tr>
                 <th>Campground</th>
                 <th>Location</th>
-                <th>Price</th>
-                <th>Electric</th>
-                <th>Water</th>
-                <th>Dump</th>
-                <th>Facilities</th>
-                <th>Rank (1-5)</th>
+                <th class="th-center">Price</th>
+                <th class="th-center">Electric</th>
+                <th class="th-center">Water</th>
+                <th class="th-center">Dump</th>
+                <th class="th-center">Facilities</th>
+                <th class="td-center">Rank</th>
             </tr>
             <tr th:each="campground : ${campgrounds}">
                 <td><a th:href="@{'/campgrounds/' + ${campground.id}}" th:text="${campground.name}"></a></td>
                 <td th:text="${campground.location}"></td>
-                <td th:text="${campground.price}"></td>
-                <td th:text="${campground.hasElectric}"></td>
-                <td th:text="${campground.hasWater}"></td>
-                <td th:text="${campground.hasDump}"></td>
-                <td th:text="${campground.hasFacilities}"></td>
-                <td th:text="${campground.rank}"></td>
+                <td class="td-center" th:text="${campground.price}"></td>
+                <td class="td-center" th:text="${campground.hasElectric}"></td>
+                <td class="td-center" th:text="${campground.hasWater}"></td>
+                <td class="td-center" th:text="${campground.hasDump}"></td>
+                <td class="td-center" th:text="${campground.hasFacilities}"></td>
+                <td class="td-center">
+                    <span th:each="i: ${#numbers.sequence(0, campground.rank - 1)}" class="fa fa-star checked"></span>
+                </td>
             </tr>
         </table>
 
-        <nav>
-            <a th:href="@{/campgrounds/add-campground}">Add Campground</a> |
-            <a th:href="@{/campgrounds/remove}">Remove Campground</a>
-        </nav>
-
-        <form method="post" style="max-width:600px;">
-            <select name="searchOption">
-                <option value="name">Campground Name</option>
-                <option value="price">Campground Price</option>
-                <option value="location">Campground Location</option>
-                <option value="electric">Has Electric</option>
-                <option value="water">Has Water</option>
-                <option value="dump">Has Dump</option>
-                <option value="facilities">Has Facilities</option>
-                <option value="rank">Rank</option>
-            </select>
-            <input type="text" name="searchTerm" placeholder="Campground Name"/>
-            <button type="submit">Search</button>
-        </form>
+        <div class="search-form">
+            <h1>Search Campgrounds</h1>
+            <form method="post">
+                <div class="custom-select">
+                    <select name="searchOption">
+                        <option value="name">Campground Name</option>
+                        <option value="location">Campground Location</option>
+                        <option value="price">Campground Price</option>
+                        <option value="rank">Campground Rank</option>
+                        <option value="electric">Has Electric</option>
+                        <option value="water">Has Water</option>
+                        <option value="dump">Has Dump</option>
+                        <option value="facilities">Has Facilities</option>
+                    </select>
+                </div>
+                <input class="search-box" type="text" name="searchTerm" placeholder="Search Here" />
+                <button class="search-button" type="submit">Search</button>
+            </form>
+        </div>
     </div>
 
 </body>

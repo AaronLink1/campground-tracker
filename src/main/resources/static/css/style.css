@@ -141,3 +141,14 @@ th, td {
     height: 30px;
     margin-left: 20px;
 }
+
+.remove-button {
+        background-color: #238f18;
+        color: #fff;
+        font-family: arial;
+        font-size: 25px;
+        width: 150px;
+        height: 50px;
+        margin-left: 425px;
+        margin-top: 15px;
+}
