@@ -269,6 +269,14 @@ th, td {
     padding: 10px;
 }
 
+p {
+    font-family: arial;
+    font-size: 25px;
+    text-indent: 60px;
+    padding: 20px;
+    color: #238f18;
+}
+
 .error {
     font-family: arial;
     font-size: 20px;

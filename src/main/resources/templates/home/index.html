@@ -2,10 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">Default Title</head>
 <body class="container">
-Hello and Welcome to The Campground Lister
-<br/>
-<a th:href="@{/campgrounds}">Your Campground List</a> |
-<a th:href="@{/login}">Login</a> |
-<a th:href="@{/registration}">Register New Account</a>
+
+    <nav th:replace="fragments :: menu">Menu</nav>
+
+    <div class="wrapper">
+        <h1 th:text="${title}">Default Title</h1>
+        <p>
+                Campground Tracker was designed to help you track the campgrounds you go to. When you find one you like
+            you can login and simply add it to your list of campgrounds. You can even track ones you aren't to fond of
+            so you know which ones to avoid in your future travels. This application also lets you know if they have the
+            camping necessities.
+        </p>
+    </div>
+
 </body>
 </html>
