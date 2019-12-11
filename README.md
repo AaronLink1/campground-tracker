@@ -1,3 +1,5 @@
 # capstone-project
 
-Will type this up after I add the license.
+Project Languages, Frameworks, Database:
+
+* Item Used Java for the backend language
