@@ -2,19 +2,19 @@
 
 Project Languages, Frameworks, Database:
 
-* Item Used Java for the backend language
-* Item Used Spring Boot Framework
-  * Item Spring Security
-  * Item Spring Data JPA
+* Used Java for the backend language
+* Used Spring Boot Framework
+  * Spring Security
+  * Spring Data JPA
   * Thymeleaf
-* Item MySQL Database
-* Item Custom style sheet in CSS
+* MySQL Database
+* Custom style sheet in CSS
 
 # Features of the application
 
-* Item Has a user login and registration form using Spring Security
-* Item Allows user to add and remove campgrounds in their list
-* Item User can search for campgrounds in their list
+* Has a user login and registration form using Spring Security
+* Allows user to add and remove campgrounds in their list
+* User can search for campgrounds in their list
 
 # Why I made this application
 
